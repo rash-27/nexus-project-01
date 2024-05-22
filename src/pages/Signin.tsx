@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Input from "../components/Input"
 import { useState } from "react"
 function Signin() {
@@ -13,14 +14,16 @@ function Signin() {
                 <div className="relative group">
                     <div className="absolute -inset-0.5 bg-pink-600 rounded-xl blur opacity-75 group-hover:opacity-100 group-hover:duration-200 transition duration-1000 bg-gradient-to-r from-pink-600 to-purple-600"></div>
                     <div className="relative flex bg-white w-full rounded-xl flex-col items-center bg-gray-200">
-                    <h1 className="font-heading text-3xl py-6"> Sign in </h1>
+                    <h1 className="font-heading text-4xl py-6"> Sign in </h1>
                     <div>
                     <Input type="text" onChange={(e)=> setUsername(e.target.value)} label="Username" />
                     </div>
                     <div>
                     <Input type="password" onChange={(e)=> setPassword(e.target.value)} label="Password" />
+                    <p className="text-xs text-blue-700 cursor-pointer">Forgot Passoword?</p>
                     </div>
                     <button type="submit" className="font-display w-32 h-12 border-2 bg-blue-200 border-blue-300 rounded-lg mt-3 mb-6">Sign In</button>
+                    <div className="pb-2 ">Dont have an account? <Link to={'/signup'} className="text-blue-700">SignUp</Link> </div>
                     </div>
                     </div>
                 </div>
