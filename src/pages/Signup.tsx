@@ -2,12 +2,30 @@ import Input from "../components/Input"
 import { useState } from "react"
 import Button from "../components/Button"
 import Heading from "../components/Heading"
+import { SignUpSchema } from "../utils/validation"
+interface SignupError{
+  username?: string ,
+  password? :string ,
+  email? : string
+}
 function SignUp() {
-    const [userName , setUsername] = useState('')
+    const [username , setUsername] = useState('')
     const [password , setPassword] = useState('')
     const [email , setEmail] = useState('')
+    const [error , setError] = useState<SignupError>({username : '',password : '',email : ''})
     const handleOnclick= ()=>{
-      //Axios logic 
+      const {success , error }= SignUpSchema.safeParse({username:username , password : password , email : email})
+      if(!success && error){
+        const { fieldErrors } = error.flatten();
+            setError({
+                username: fieldErrors.username && fieldErrors.username[0],
+                password: fieldErrors.password && fieldErrors.password[0],
+                email :  fieldErrors.email && fieldErrors.email[0],
+              });
+      }
+      if(success){
+        //Axios logic 
+      }
     }
     return (
         <>
@@ -18,13 +36,13 @@ function SignUp() {
                     <div className="relative flex w-full rounded-xl flex-col items-center bg-gray-500">
                     <Heading title={"Sign up"} />
                     <div>
-                    <Input placeHolder="Enter email" type="email" onChange={(e)=> setEmail(e.target.value)} label="Email" />
+                    <Input errorMessage={error['email']} required={true} placeHolder="Enter email" type="email" onChange={(e)=> setEmail(e.target.value)} label="Email" />
                     </div>
                     <div>
-                    <Input placeHolder="Create a Username" type="text" onChange={(e)=> setUsername(e.target.value)} label="Username" />
+                    <Input errorMessage={error['username']} required={true} placeHolder="Create a Username" type="text" onChange={(e)=> setUsername(e.target.value)} label="Username" />
                     </div>
                     <div>
-                    <Input placeHolder="Create a password" type="password" onChange={(e)=> setPassword(e.target.value)} label="Password" />
+                    <Input errorMessage={error['password']} required={true} placeHolder="Create a password" type="password" onChange={(e)=> setPassword(e.target.value)} label="Password" />
                     </div>
                     <Button onClick={handleOnclick} link="signin" name="Sign Up" />
                     </div>

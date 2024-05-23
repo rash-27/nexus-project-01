@@ -2,11 +2,28 @@ import Input from "../components/Input"
 import { useState } from "react"
 import Button from "../components/Button"
 import Heading from "../components/Heading";
+import { SigninSchema } from "../utils/validation";
+interface SigninError{
+    username?: string ,
+    password? :string
+}
 function Signin() {
-    const [userName , setUsername] = useState('')
+    const [username , setUsername] = useState('')
     const [password , setPassword] = useState('')
+    const [ error , setError ] = useState<SigninError>({username : '',password : ''})
     const handleOnclick = ()=>{
-        // Axios logic
+        // Front end Validation Check
+        const {success , error } = SigninSchema.safeParse({username : username , password : password})
+        if(!success && error){
+            const { fieldErrors } = error.flatten();
+            setError({
+                username: fieldErrors.username && fieldErrors.username[0],
+                password: fieldErrors.password && fieldErrors.password[0],
+              });
+        }
+        if(success){
+            // Axios logic
+        }
     }
     return (
         <>
@@ -17,10 +34,10 @@ function Signin() {
                     <div className="relative flex w-full rounded-xl flex-col items-center bg-gray-500">
                     <Heading title={"Sign in"} />
                     <div>
-                    <Input placeHolder="Enter Username" type="text" onChange={(e)=> setUsername(e.target.value)} label="Username" />
+                    <Input errorMessage={error['username']} required={true} placeHolder="Enter Username" type="text" onChange={(e)=> setUsername(e.target.value)} label="Username" />
                     </div>
                     <div>
-                    <Input placeHolder="Enter Password" type="password" onChange={(e)=> setPassword(e.target.value)} label="Password" />
+                    <Input errorMessage={error['password']}  required={true} placeHolder="Enter Password" type="password" onChange={(e)=> setPassword(e.target.value)} label="Password" />
                     <p className="text-sm lg:text-md pb-4 text-blue-300 cursor-pointer">Forgot Passoword?</p>
                     </div>
                     <Button onClick={handleOnclick} link="signup" name="Sign in" />
