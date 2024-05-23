@@ -4,7 +4,7 @@ interface AuthProps {
 function Auth({}) {
     return (
      <div>
-
+        
      </div>
     )
   }

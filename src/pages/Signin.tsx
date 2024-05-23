@@ -1,29 +1,29 @@
-import { Link } from "react-router-dom"
 import Input from "../components/Input"
 import { useState } from "react"
+import Button from "../components/Button"
+import Heading from "../components/Heading";
 function Signin() {
     const [userName , setUsername] = useState('')
     const [password , setPassword] = useState('')
+    const handleOnclick = ()=>{
+        // Axios logic
+    }
     return (
         <>
-        <div>
-        <div className="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
-        </div>
         <div className="flex h-screen justify-center">
-            <div className="flex flex-col justify-center w-1/4 ">
+            <div className="flex flex-col justify-center w-72 lg:w-1/4">
                 <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-pink-600 rounded-xl blur opacity-75 group-hover:opacity-100 group-hover:duration-200 transition duration-1000 bg-gradient-to-r from-pink-600 to-purple-600"></div>
-                    <div className="relative flex bg-white w-full rounded-xl flex-col items-center bg-gray-200">
-                    <h1 className="font-heading text-4xl py-6"> Sign in </h1>
+                    <div className="absolute -inset-0.5 bg-pink-600 rounded-xl blur opacity-75 group-hover:opacity-100 group-hover:duration-200 transition duration-1000 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+                    <div className="relative flex w-full rounded-xl flex-col items-center bg-gray-500">
+                    <Heading title={"Sign in"} />
                     <div>
-                    <Input type="text" onChange={(e)=> setUsername(e.target.value)} label="Username" />
+                    <Input placeHolder="Enter Username" type="text" onChange={(e)=> setUsername(e.target.value)} label="Username" />
                     </div>
                     <div>
-                    <Input type="password" onChange={(e)=> setPassword(e.target.value)} label="Password" />
-                    <p className="text-xs text-blue-700 cursor-pointer">Forgot Passoword?</p>
+                    <Input placeHolder="Enter Password" type="password" onChange={(e)=> setPassword(e.target.value)} label="Password" />
+                    <p className="text-sm lg:text-md pb-4 text-blue-300 cursor-pointer">Forgot Passoword?</p>
                     </div>
-                    <button type="submit" className="font-display w-32 h-12 border-2 bg-blue-200 border-blue-300 rounded-lg mt-3 mb-6">Sign In</button>
-                    <div className="pb-2 ">Dont have an account? <Link to={'/signup'} className="text-blue-700">SignUp</Link> </div>
+                    <Button onClick={handleOnclick} link="signup" name="Sign in" />
                     </div>
                     </div>
                 </div>
