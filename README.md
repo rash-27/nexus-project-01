@@ -1,30 +1,15 @@
-# React + TypeScript + Vite
+# Steps to setup project locally
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Run `npm install` to install all the dependencies
 
-Currently, two official plugins are available:
+- Run `npm run dev` to start the development server in your localhost
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Frontend hosted on [Vercel] (https://nexus-project-01.vercel.app/)
 
-## Expanding the ESLint configuration
+# Project description 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+This project is a simple frontend for Login and Signup pages which are hosted on Vercel. The project is build using React and Tailwind CSS and pages are made responsive for all screen sizes. Validation is done using Zod.
 
-- Configure the top-level `parserOptions` property like this:
+## Stack
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Frontend : React, Tailwind CSS , Zod
